@@ -27,7 +27,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 // import login
-import LOGIN from "./Login";
+import LOGIN from "./Menu";
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -63,7 +63,7 @@ const App: () => Node = () => {
   };
 
   return (
-   <LOGIN></LOGIN>
+   <LOGIN/>
   );
 };
 

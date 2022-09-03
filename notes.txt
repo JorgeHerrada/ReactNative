@@ -1,0 +1,18 @@
+25.08.2022
+    http://148.202.152.33/ws_claseaut.php?codigo=211721923&nip=admin123
+    https://www.w3schools.com/xml/xml_http.asp
+
+
+30.08.2022
+    npm 3 packages
+    npm install @react-navigation/native
+    npm install react-native-screens react-native-safe-area-context
+    npm install @react-navigation/native-stack
+
+    **** TAREA ****
+    ajustar codigo del boton para que solo
+    de acceso a la siguiente pantalla cuando
+    las credenciales de acceso sean correctas.
+    Lanzar ventana de "alerta no es usuario reconocido".
+    Además, quitar tabbar que indica la pantalla actual y 
+    opcion de retroceso

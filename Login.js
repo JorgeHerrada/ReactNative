@@ -8,22 +8,58 @@ import {
     TextInput, 
     Button, 
     ImageBackground, 
-    TouchableOpacity 
+    TouchableOpacity,
+    // KeyboardAvoidingView
 } from 'react-native';
 
+// importar para navegar entre pantallas
+import { useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
         // variables definition
+        codigo:"",
+        nip:"",
     };
   }
 
   render() {
-      // js programming for objects
-      const btnClick = () => {
-          console.log("Has dado click al boton");
+    // js programming for objects
+    const btnClick = () => {
+    
+        
+        
+        
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            // If readyState=4 server is up then, status=200 succesfull request
+            if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                console.log(xhttp.responseText);
+                
+
+                if (xhttp.responseText == '0')
+                {
+                    console.log("Credenciales incorrectas");
+                }
+                else
+                {
+                    // cambiar de ventana
+                    // this.props.navigation.navigate("pantalla2");
+                    console.log("Login exitoso");
+                }
+
+            }
+            else{
+                console.log
+            }
+        };
+        xhttp.open("GET", "http://148.202.152.33/ws_claseaut.php?codigo=" + this.state.codigo + "&nip=" + this.state.nip, true);
+        xhttp.send();
       }
 
     return (
@@ -41,11 +77,15 @@ export default class Login extends Component {
                 <TextInput 
                     style={styles.input}
                     placeholder="Codigo"
-                    />
+                    keyboardType='numeric'
+                    // get input and save in var codigo
+                    onChangeText={codigo => this.setState({codigo})}
+                />
                 <TextInput 
                     placeholder="NIP"
                     style={styles.input}
                     secureTextEntry={true}
+                    onChangeText={nip => this.setState({nip})}
                     />
                 <View style={styles.btnEntrar}>
                     <TouchableOpacity>
@@ -53,7 +93,7 @@ export default class Login extends Component {
                             style={styles.button}
                             title="Log in"
                             onPress={btnClick}
-                        />
+                            />
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
@@ -65,9 +105,13 @@ export default class Login extends Component {
 
 // styles
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     background:{
-        // backgroundColor: "#FFAEBC",
+        backgroundColor: "#FFAEBC",
         flex: 1,  
+        opacity: 0.95
     },
     btnEntrar:{
         width:100,
@@ -79,14 +123,14 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         fontSize: 25,
         marginTop: 10,
-        marginHorizontal: 20,
+        marginHorizontal: 30,
         borderRadius: 8,
-        // alignSelf: "center"
     },
     logoudg:{
         width: 200,
         height:300,
         alignSelf: "center",
+        opacity: 0.7
     },
     textoudg:{
         fontSize: 40,
