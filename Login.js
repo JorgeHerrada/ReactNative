@@ -32,35 +32,33 @@ export default class Login extends Component {
     
         
         
-        
+        var logeado = false;
         
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             // If readyState=4 server is up then, status=200 succesfull request
             if (this.readyState == 4 && this.status == 200) {
                 // Typical action to be performed when the document is ready:
-                console.log(xhttp.responseText);
-                
+                console.log(xhttp.responseText);  
 
-                if (xhttp.responseText == '0')
-                {
-                    console.log("Credenciales incorrectas");
+                if (xhttp.responseText[0] == "A"){
+                    logeado = true;
+                    console.log("LOGEADO");
+                    // this.props.navigation.navigate("pantalla2");
                 }
                 else
                 {
-                    // cambiar de ventana
-                    // this.props.navigation.navigate("pantalla2");
-                    console.log("Login exitoso");
+                    console.log("Credenciales incorrectas");
                 }
-
-            }
-            else{
-                console.log
+                
             }
         };
+        
         xhttp.open("GET", "http://148.202.152.33/ws_claseaut.php?codigo=" + this.state.codigo + "&nip=" + this.state.nip, true);
         xhttp.send();
-      }
+        
+        this.props.navigation.navigate("pantalla2");
+    }
 
     return (
         <View style={styles.background}>
