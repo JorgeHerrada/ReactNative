@@ -30,33 +30,33 @@ export default class Login extends Component {
   render() {
     // js programming for objects
     const btnClick = () => {
+       
+        var xhttp = new XMLHttpRequest(); // creates object for xmlhttp request
 
-        var logeado = false; // Boolean check if login successfuly
-        
-        var xhttp = new XMLHttpRequest();
+        // defines what to do when readySate changes
         xhttp.onreadystatechange = function() {
-            // If readyState=4 server is up then, status=200 succesfull request
+            // If readyState=4 server is up and if status=200 succesfull request
             if (this.readyState == 4 && this.status == 200) {
-                // Typical action to be performed when the document is ready:
+                
                 console.log(xhttp.responseText);  
 
+                // Valid login?
                 if (xhttp.responseText[0] == "A"){
-                    logeado = true;
                     console.log("LOGEADO");
-                    // this.props.navigation.navigate("pantalla2");
-                    changeScreen();
+                    changeScreen(); // go to different screen
                 }
                 else
                 {
                     console.log("Credenciales incorrectas");
-                    badLoginalert();
+                    badLoginalert(); // pop up alert
                 }
                 
             }
         };
         
+        // defines the metod (get) // url where to go (dinamic with user input) // asynchronous process (true)
         xhttp.open("GET", "http://148.202.152.33/ws_claseaut.php?codigo=" + this.state.codigo + "&nip=" + this.state.nip, true);
-        xhttp.send();
+        xhttp.send(); // send the request defined above
         
     }
     
@@ -68,7 +68,7 @@ export default class Login extends Component {
         [
             { text: "OK"}
         ]
-        );
+    );
     
     // Change the current screen with navigation   
     const changeScreen = () => {
