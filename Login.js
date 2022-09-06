@@ -9,6 +9,7 @@ import {
     Button, 
     ImageBackground, 
     TouchableOpacity,
+    Alert
     // KeyboardAvoidingView
 } from 'react-native';
 
@@ -29,10 +30,8 @@ export default class Login extends Component {
   render() {
     // js programming for objects
     const btnClick = () => {
-    
-        
-        
-        var logeado = false;
+
+        var logeado = false; // Boolean check if login successfuly
         
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -49,6 +48,7 @@ export default class Login extends Component {
                 else
                 {
                     console.log("Credenciales incorrectas");
+                    badLoginalert();
                 }
                 
             }
@@ -57,8 +57,18 @@ export default class Login extends Component {
         xhttp.open("GET", "http://148.202.152.33/ws_claseaut.php?codigo=" + this.state.codigo + "&nip=" + this.state.nip, true);
         xhttp.send();
         
-        this.props.navigation.navigate("pantalla2");
+        // this.props.navigation.navigate("pantalla2");
     }
+
+    // Display pop up alert 
+    const badLoginalert = () =>
+    Alert.alert(
+      "Login invalido",
+      "Los datos introducidos son inválidos, intenta de nuevo.",
+      [
+        { text: "OK"}
+      ]
+    );
 
     return (
         <View style={styles.background}>
