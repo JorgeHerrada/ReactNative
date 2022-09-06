@@ -44,6 +44,7 @@ export default class Login extends Component {
                     logeado = true;
                     console.log("LOGEADO");
                     // this.props.navigation.navigate("pantalla2");
+                    changeScreen();
                 }
                 else
                 {
@@ -57,18 +58,22 @@ export default class Login extends Component {
         xhttp.open("GET", "http://148.202.152.33/ws_claseaut.php?codigo=" + this.state.codigo + "&nip=" + this.state.nip, true);
         xhttp.send();
         
-        // this.props.navigation.navigate("pantalla2");
     }
-
+    
     // Display pop up alert 
     const badLoginalert = () =>
     Alert.alert(
-      "Login invalido",
-      "Los datos introducidos son inválidos, intenta de nuevo.",
-      [
-        { text: "OK"}
-      ]
-    );
+        "Login invalido",
+        "Los datos introducidos son inválidos, intenta de nuevo.",
+        [
+            { text: "OK"}
+        ]
+        );
+    
+    // Change the current screen with navigation   
+    const changeScreen = () => {
+        this.props.navigation.navigate("pantalla2");
+    }
 
     return (
         <View style={styles.background}>
