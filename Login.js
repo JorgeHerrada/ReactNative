@@ -31,6 +31,9 @@ export default class Login extends Component {
     // js programming for objects
     const btnClick = () => {
        
+        // save state to call it later inside other object's functions
+        let _this = this; 
+
         var xhttp = new XMLHttpRequest(); // creates object for xmlhttp request
 
         // defines what to do when readySate changes
@@ -41,9 +44,15 @@ export default class Login extends Component {
                 console.log(xhttp.responseText);  
 
                 // Valid login?
-                if (xhttp.responseText[0] == "A"){
+                if (xhttp.responseText[0] != "0"){
                     console.log("LOGEADO");
-                    changeScreen(); // go to different screen
+                    
+                    // save response and split it on array for each ","
+                    let datos= xhttp.responseText.split(",");
+                    console.log(datos[2]);
+                    
+                    // go to next screen and send data 
+                    _this.props.navigation.navigate("pantalla2",{nombre: datos[2], codigo: datos[1]});
                 }
                 else
                 {
@@ -58,6 +67,7 @@ export default class Login extends Component {
         xhttp.open("GET", "http://148.202.152.33/ws_claseaut.php?codigo=" + this.state.codigo + "&nip=" + this.state.nip, true);
         xhttp.send(); // send the request defined above
         
+        
     }
     
     // Display pop up alert 
@@ -70,11 +80,7 @@ export default class Login extends Component {
         ]
     );
     
-    // Change the current screen with navigation   
-    const changeScreen = () => {
-        this.props.navigation.navigate("pantalla2");
-    }
-
+    
     return (
         <View style={styles.background}>
             <ImageBackground

@@ -17,6 +17,7 @@ function App() {
           name="Login" 
           component={LOGIN} 
           options={{ headerShown: false }} // header wont show
+          
         />
         <Stack.Screen 
           name="pantalla2" 
