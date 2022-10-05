@@ -15,11 +15,13 @@ export default class Pantallab extends Component {
     let _this = this;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      // save data from server on JS object
-      var datos=JSON.parse(xhttp.responseText);
-      _this.setState({datosServer:datos}); // save object
-    }
+      console.log("Petición enviada a servidor");
+      if (this.readyState == 4 && this.status == 200) {
+        // save data from server on JS object
+        var datos=JSON.parse(xhttp.responseText);
+        _this.setState({datosServer:datos}); // save object
+        console.log("JSON recibido");
+      }
   };
   xhttp.open("GET", "https://herradapinternet.000webhostapp.com/mostrarDatos.php", true);
   xhttp.send();
@@ -78,6 +80,7 @@ const styles = StyleSheet.create({
   celda:{
     fontSize:20,
     fontFamily:"serif",
+    color:"black",
   },
   infoContainer:{
     padding:20,

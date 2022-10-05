@@ -9,8 +9,9 @@ import {
     Button, 
     ImageBackground, 
     TouchableOpacity,
-    Alert
-    // KeyboardAvoidingView
+    Alert,
+    SafeAreaView,
+    Dimensions,
 } from 'react-native';
 
 // importar para navegar entre pantallas
@@ -82,7 +83,7 @@ export default class Login extends Component {
     
     
     return (
-        <View style={styles.background}>
+        <SafeAreaView style={styles.background}>
             <ImageBackground
                 source={require("./Imagenes/background.jpg")}
                 style={styles.background}
@@ -116,7 +117,7 @@ export default class Login extends Component {
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
-        </View>
+        </SafeAreaView>
     );
   }
 }
@@ -126,8 +127,12 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
     background:{
         backgroundColor: "#FFAEBC",
-        flex: 1,  
-        opacity: 0.95
+        // Make sure the bg image stays same size when keyboard displays
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
     },
     btnEntrar:{
         width:100,
@@ -150,7 +155,8 @@ const styles = StyleSheet.create({
     },
     textoudg:{
         fontSize: 40,
-        color: "#A0E7E5",
-        textAlign: "center"
+        color: "#000",
+        textAlign: "center",
+        fontFamily:"serif",
     },
 })
