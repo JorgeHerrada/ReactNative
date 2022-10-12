@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default class Pantallab extends Component {
@@ -29,14 +29,24 @@ export default class Pantallab extends Component {
 
   render() {
 
+    const getItem = (numeroCelda,nombreActual,codigoActual,imagenActual) => {
+      console.log(numeroCelda);
+      console.log(imagenActual);
+      // change screen
+      this.props.navigation.navigate("id",{nombre: nombreActual, codigo: codigoActual, imagen:imagenActual});
+    }
+
     // creacion de la celda que despliega los datos
     const celda = ({item}) => {
       return(
         <View style={styles.celdaContainer}>
-          <Text style={styles.celda}>id: {item.id}</Text>
-          <Text style={styles.celda}>nombre: {item.nombre}</Text>
-          <Text style={styles.celda}>codigo: {item.codigo}</Text>
-          <Text style={styles.celda}>tarea: {item.tarea}</Text>
+          <TouchableOpacity onPress={() => getItem(item.id,item.nombre,item.codigo,item.imagen)}>
+            <Text style={styles.celda}>id: {item.id}</Text>
+            <Text style={styles.celda}>nombre: {item.nombre}</Text>
+            <Text style={styles.celda}>codigo: {item.codigo}</Text>
+            <Text style={styles.celda}>tarea: {item.tarea}</Text>
+            <Text style={styles.celda}>imagen URL: {item.imagen}</Text>
+          </TouchableOpacity>
         </View>
       )
     }

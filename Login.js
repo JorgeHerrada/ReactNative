@@ -53,7 +53,7 @@ export default class Login extends Component {
                     console.log(datos[2]);
                     
                     // go to next screen and send data 
-                    _this.props.navigation.navigate("pantalla2",{nombre: datos[2], codigo: datos[1]});
+                    _this.props.navigation.navigate("acciones",{nombre: datos[2], codigo: datos[1]});
                 }
                 else
                 {

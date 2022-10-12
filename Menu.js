@@ -5,6 +5,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // pantallas que saldran en el proyecto
 import LOGIN from "./Login";
 import PANTALLAB from "./Pantallab";
+import ID from "./Id"
+import ACCIONES from "./Acciones"
+import ALTAS from "./Altas"
 
 
 const Stack = createNativeStackNavigator();
@@ -17,11 +20,25 @@ function App() {
           name="Login" 
           component={LOGIN} 
           options={{ headerShown: false }} // header wont show
-          
         />
         <Stack.Screen 
           name="pantalla2" 
           component={PANTALLAB} 
+          options={{ headerShown: false }} // header wont show
+        />
+        <Stack.Screen 
+          name="id" 
+          component={ID} 
+          options={{ headerShown: false }} // header wont show
+        />
+        <Stack.Screen 
+          name="acciones" 
+          component={ACCIONES} 
+          options={{ headerShown: false }} // header wont show
+        />
+        <Stack.Screen 
+          name="altas" 
+          component={ALTAS} 
           options={{ headerShown: false }} // header wont show
         />
       </Stack.Navigator>

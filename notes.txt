@@ -16,3 +16,8 @@
     Lanzar ventana de "alerta no es usuario reconocido".
     Además, quitar tabbar que indica la pantalla actual y 
     opcion de retroceso
+
+
+11.10.2022
+    Crear ventana de altas y mandarla a llamar. 
+    Crear los text input necesarios para que el usuario agrege.
