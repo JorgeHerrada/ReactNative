@@ -8,6 +8,7 @@ import PANTALLAB from "./Pantallab";
 import ID from "./Id"
 import ACCIONES from "./Acciones"
 import ALTAS from "./Altas"
+import BAJAS from "./Bajas"
 
 
 const Stack = createNativeStackNavigator();
@@ -39,6 +40,11 @@ function App() {
         <Stack.Screen 
           name="altas" 
           component={ALTAS} 
+          options={{ headerShown: false }} // header wont show
+        />
+        <Stack.Screen 
+          name="bajas" 
+          component={BAJAS} 
           options={{ headerShown: false }} // header wont show
         />
       </Stack.Navigator>

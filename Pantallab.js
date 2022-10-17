@@ -22,9 +22,9 @@ export default class Pantallab extends Component {
         _this.setState({datosServer:datos}); // save object
         console.log("JSON recibido");
       }
-  };
-  xhttp.open("GET", "https://herradapinternet.000webhostapp.com/mostrarDatos.php", true);
-  xhttp.send();
+    };
+    xhttp.open("GET", "https://herradapinternet.000webhostapp.com/mostrarDatos.php", true);
+    xhttp.send();
   }
 
   render() {
