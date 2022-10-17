@@ -21,3 +21,11 @@
 11.10.2022
     Crear ventana de altas y mandarla a llamar. 
     Crear los text input necesarios para que el usuario agrege.
+
+13.10.2022
+    Diseñar pantalla de bajas:
+    Desplegar caja que permite seleccionar a quien eliminar
+    puede usar: 
+    https://www.npmjs.com/package/react-native-select-dropdown
+    o
+    https://www.npmjs.com/package/react-native-dropdown-picker
