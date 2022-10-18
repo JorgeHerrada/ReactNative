@@ -10,7 +10,7 @@ export default class Acciones extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.background}>
         <Text style={styles.datos}> Nombre: {this.props.route.params.nombre} </Text>
         <Text style={styles.datos}> Codigo: {this.props.route.params.codigo} </Text>
         <Button 
@@ -32,6 +32,11 @@ export default class Acciones extends Component {
 }
 
 const styles = StyleSheet.create({
+  background:{
+    backgroundColor:"#FFD1D1",
+    flex: 1,  
+    opacity: 1
+},
   datos:{
     color:'black',
     alignSelf:'center',
