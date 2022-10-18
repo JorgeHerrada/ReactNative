@@ -8,12 +8,12 @@ export default class Bajas extends Component {
     this.state = {
         datosServer:[],
         codigos:"",
-        // getCodigos:"",
+        registroEliminar:"",
     };
   }
   
   render() {
-  // ejecuta cada que se carga la vista
+  // Carga la información de la base de datos
   const loadData = () => {
     let _this = this;
     var xhttp = new XMLHttpRequest();
@@ -37,27 +37,50 @@ export default class Bajas extends Component {
         
     // convert object to array so it can be used in the SelectDropdown
     const getCodigos = () => {
-      var _codigos = this.state.datosServer.map((obj) => obj.codigo);
-      this.setState({codigos:_codigos});
-      console.log(this.state.codigos + "AQUI DEBERIA HABER CODIGOS");
+      // get all values for "codigo" key in all objects in the array "datosServer" and save them
+      this.setState({codigos:this.state.datosServer.map((obj) => obj.codigo)});
+      console.log("Codigos en la DB: " + this.state.codigos);
     }
 
-    const countries = ["Egypt", "Canada", "Australia", "Ireland"];
-    // const codigos = this.state.datosServer.map((obj) => obj.codigo);  
-    // let result = objArray.map(a => a.foo);  
+    // Delete register from database where "codigo" = registroEliminar
+    const eliminarRegistro = () => {
+      console.log("Eliminando registro seleccionado: " + this.state.registroEliminar);
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            if(xhttp.responseText === "1"){
+              console.log("Elemento eliminado con éxito.");
+            }
+            else{
+              console.log("No se pudo eliminar.");
+            }
+          }
+      };
+      xhttp.open("GET", "https://herradapinternet.000webhostapp.com/bajas.php?codigo=" + this.state.registroEliminar, true);
+      xhttp.send();
+    }
 
     return (
       <View style={styles.background}>
         <Text style={styles.datos}>{this.props.route.params.nombre} </Text>
         <Text style={styles.datos}>{this.props.route.params.codigo} </Text>
         <Text style={styles.datos}> Elige el código a dar de baja: </Text>
-        <Text>{this.state.codigos} -- Aqui deberia haber codigos</Text>
+
+        <Text>Codigos en la DB: {this.state.codigos}</Text>
+
+        <Button
+          onPress={loadData}
+          title="Cargar Registros"
+        />
+
         <SelectDropdown
             // Send only values of the object
             data={Object.values(this.state.codigos)} 
-            // data={Object.values(countries)} 
             onSelect={(selectedItem, index) => {
                 console.log(selectedItem, index)
+                // Guarda codigo seleccionado
+                this.setState({registroEliminar:selectedItem});
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
                 // text represented after item is selected
@@ -70,11 +93,11 @@ export default class Bajas extends Component {
                 return item
             }}
         />
-        <Button
-          onPress={loadData}
-          title="Cargar Registros"
-        />
         
+        <Button
+          title='Eliminar registro seleccionado'
+          onPress={eliminarRegistro}
+        />
 
       </View>
     );
