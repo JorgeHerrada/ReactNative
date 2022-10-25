@@ -9,6 +9,7 @@ import ID from "./Id"
 import ACCIONES from "./Acciones"
 import ALTAS from "./Altas"
 import BAJAS from "./Bajas"
+import CAMBIOS from "./Cambios"
 
 
 const Stack = createNativeStackNavigator();
@@ -45,6 +46,11 @@ function App() {
         <Stack.Screen 
           name="bajas" 
           component={BAJAS} 
+          options={{ headerShown: false }} // header wont show
+        />
+        <Stack.Screen 
+          name="cambios" 
+          component={CAMBIOS} 
           options={{ headerShown: false }} // header wont show
         />
       </Stack.Navigator>

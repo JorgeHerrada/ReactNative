@@ -29,3 +29,15 @@
     https://www.npmjs.com/package/react-native-select-dropdown
     o
     https://www.npmjs.com/package/react-native-dropdown-picker
+
+25.10.2022
+
+    1.- Realizar script para hacer update en base de datos
+
+    2.- en la interfaz, usar el componente usado en bajas para
+        seleccionar el codigo a modificar
+
+    3.- Una vez selecionado el codigo, en los campos input poner 
+        información nueva
+    
+    4.- Solo se modifica tarea y/o imagen o ninguno

@@ -21,7 +21,10 @@ export default class Acciones extends Component {
           title='Bajas'
           onPress={() => this.props.navigation.navigate("bajas",{nombre: this.props.route.params.nombre, codigo: this.props.route.params.codigo})}
         />
-        <Button title='Cambios'/>
+        <Button 
+            title='Cambios'
+            onPress={() => this.props.navigation.navigate("cambios",{nombre: this.props.route.params.nombre, codigo: this.props.route.params.codigo})}
+        />
         <Button 
             title='Lista'
             onPress={() => this.props.navigation.navigate("pantalla2",{nombre: this.props.route.params.nombre, codigo: this.props.route.params.codigo})}
