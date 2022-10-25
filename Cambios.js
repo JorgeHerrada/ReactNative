@@ -33,10 +33,10 @@ export default class Cambios extends Component {
   
               // convert object to array so it can be used in the SelectDropdown
               getCodigos();
-            }
-          };
-          xhttp.open("GET", "https://herradapinternet.000webhostapp.com/mostrarDatos.php", true);
-          xhttp.send();
+          }
+      };
+      xhttp.open("GET", "https://herradapinternet.000webhostapp.com/mostrarDatos.php", true);
+      xhttp.send();
     }
           
       // convert object to array so it can be used in the SelectDropdown
@@ -67,9 +67,10 @@ export default class Cambios extends Component {
       }
 
       // Carga la información de la base de datos
-    const loadTareaImagen = () => {
+    const loadTareaImagen = (selectedItem) => {
         let _this = this;
         var xhttp = new XMLHttpRequest();
+        console.log("Registro MAMALON a modificar: " + selectedItem);
         xhttp.onreadystatechange = function() {
             console.log("Petición enviada a servidor");
             if (this.readyState == 4 && this.status == 200) {
@@ -77,19 +78,20 @@ export default class Cambios extends Component {
                     console.log("Se cargaron los datos actuales.");
                     // guardamos datos en json
                     var datos=JSON.parse(xhttp.responseText);
-                    //_this.setState({tareaVieja:xhttp.datos["tarea"]});
-                    //_this.setState({tareaVieja:xhttp.datos["imagen"]});
-                    console.log(xhttp.datos["imagen"]);
-                    console.log(xhttp.datos["tarea"]);
-                  }
-                  else{
-                    console.log("No se pudo cargar los datos actuales.");
-                  }
-              }
-            };
-            xhttp.open("GET", "https://herradapinternet.000webhostapp.com/mostrarTareaImagen.php?codigo=" + this.state.registroModificar, true);
-            //console.log("https://herradapinternet.000webhostapp.com/mostrarTareaImagen.php?codigo=" + this.state.registroModificar);
-            xhttp.send();
+                    _this.setState({tareaVieja:datos[0]["tarea"]});
+                    _this.setState({imagenVieja:datos[0]["imagen"]});
+                    console.log(datos);
+                    //console.log(datos[0]["imagen"]);
+                    //console.log(datos[0]["tarea"]);
+                }
+                else{
+                  console.log("No se pudo cargar los datos actuales.");
+                }
+            }
+        };
+        xhttp.open("GET", "https://herradapinternet.000webhostapp.com/mostrarTareaImagen.php?codigo=" + selectedItem, true);
+        console.log("https://herradapinternet.000webhostapp.com/mostrarTareaImagen.php?codigo=" + selectedItem);
+        xhttp.send();
       }
   
       return (
@@ -113,7 +115,7 @@ export default class Cambios extends Component {
                 // Guarda codigo seleccionado
                 this.setState({registroModificar:selectedItem});
                 // cargamos datos imagen y tarea actual del codigo seleccionado
-                loadTareaImagen();
+                loadTareaImagen(selectedItem);
               }}
               buttonTextAfterSelection={(selectedItem, index) => {
                   // text represented after item is selected
@@ -130,16 +132,16 @@ export default class Cambios extends Component {
             <TextInput 
                 style={styles.input}
                 placeholder="Tarea"
-                value={this.state.tareaVieja}
                 // get input and save in variable
                 onChangeText={tarea => this.setState({tarea})}
+                defaultValue={this.state.tareaVieja}
                 />
             <TextInput 
                 style={styles.input}
-                value={this.state.imagenVieja}
                 placeholder="Imagen"
                 // get input and save in variable
                 onChangeText={urli => this.setState({urli})}
+                defaultValue={this.state.imagenVieja}
             />
           
           <Button
