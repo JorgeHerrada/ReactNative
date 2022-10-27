@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, TextInput} from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput, Image} from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 
 export default class Cambios extends Component {
@@ -143,6 +143,13 @@ export default class Cambios extends Component {
                 onChangeText={urli => this.setState({urli})}
                 defaultValue={this.state.imagenVieja}
             />
+            <View>
+              <Image
+                style={{width:100,height:100}}
+                source={{uri:this.state.imagenVieja}}
+                // source={require(this.props.route.params.imagen)}
+              />
+            </View>
           
           <Button
             title='Cambiar registro seleccionado'
